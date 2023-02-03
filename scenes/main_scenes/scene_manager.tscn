@@ -3,5 +3,5 @@
 [ext_resource path="res://scripts/scene_manager.gd" type="Script" id=1]
 
 [node name="SceneManager" type="Viewport"]
-size = Vector2( 320, 180 )
+usage = 0
 script = ExtResource( 1 )

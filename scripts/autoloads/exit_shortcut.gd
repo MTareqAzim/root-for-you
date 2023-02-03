@@ -2,7 +2,7 @@ extends Node
 
 
 func _ready():
-	if OS.get_name() != "FRT":
+	if OS.get_name() != "Unix":
 		queue_free()
 
 

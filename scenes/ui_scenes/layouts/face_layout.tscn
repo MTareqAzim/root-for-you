@@ -23,12 +23,10 @@ script = ExtResource( 3 )
 
 [node name="Heal" parent="." instance=ExtResource( 1 )]
 material = SubResource( 1 )
-anchor_top = 1.0
-anchor_bottom = 1.0
 margin_left = 40.0
-margin_top = -60.0
+margin_top = 0.0
 margin_right = 80.0
-margin_bottom = -20.0
+margin_bottom = 40.0
 color = Color( 0, 1, 0.0392157, 1 )
 action = "heal"
 
@@ -59,12 +57,10 @@ color = Color( 1, 0, 0, 1 )
 action = "attack"
 
 [node name="Magic" parent="." instance=ExtResource( 1 )]
-anchor_top = 1.0
-anchor_bottom = 1.0
 margin_left = 0.0
-margin_top = -40.0
+margin_top = 20.0
 margin_right = 40.0
-margin_bottom = 0.0
+margin_bottom = 60.0
 color = Color( 0, 0.227451, 1, 1 )
 action = "magic"
 

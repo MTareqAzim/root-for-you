@@ -1,10 +1,88 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/main_menu.gd" type="Script" id=1]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
+next_scenes = [ "res://scenes/game_scenes/game_scene.tscn", "", "" ]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.196078, 0.290196, 0.227451, 1 )
+
+[node name="CenterContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+alignment = 1
+
+[node name="Title" type="Label" parent="CenterContainer"]
+margin_top = 25.0
+margin_right = 280.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 3.0
+text = "Root For You!"
+align = 1
+valign = 1
+
+[node name="Start" type="Label" parent="CenterContainer"]
+margin_top = 71.0
+margin_right = 280.0
+margin_bottom = 85.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Start"
+align = 1
+valign = 1
+
+[node name="bg" type="ColorRect" parent="CenterContainer/Start"]
+show_behind_parent = true
+anchor_left = 0.2
+anchor_top = -0.2
+anchor_right = 0.8
+anchor_bottom = 1.2
+color = Color( 0.541176, 0.541176, 0, 0.392157 )
+
+[node name="Settings" type="Label" parent="CenterContainer"]
+margin_top = 96.0
+margin_right = 280.0
+margin_bottom = 110.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Settings"
+align = 1
+valign = 1
+
+[node name="bg" type="ColorRect" parent="CenterContainer/Settings"]
+show_behind_parent = true
+anchor_left = 0.2
+anchor_top = -0.2
+anchor_right = 0.8
+anchor_bottom = 1.2
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="Credits" type="Label" parent="CenterContainer"]
+margin_top = 122.0
+margin_right = 280.0
+margin_bottom = 136.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Credits"
+align = 1
+valign = 1
+
+[node name="bg" type="ColorRect" parent="CenterContainer/Credits"]
+show_behind_parent = true
+anchor_left = 0.2
+anchor_top = -0.2
+anchor_right = 0.8
+anchor_bottom = 1.2
+color = Color( 0, 0, 0, 0.392157 )

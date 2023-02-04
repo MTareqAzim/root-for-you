@@ -48,6 +48,7 @@ func _input(event) -> void:
 		current_option += vertical
 		current_option = int(clamp(current_option, 0, Options.size() - 1))
 		_highlight()
+		get_viewport().set_input_as_handled()
 		return
 	
 	var horizontal = int(event.is_action_pressed("ui_right")) - int(event.is_action_pressed("ui_left"))
@@ -71,11 +72,13 @@ func _input(event) -> void:
 				if play_test:
 					AudioServer.set_bus_volume_db(index, linear2db(linear_vol))
 					sounds_demo[index].play()
+		get_viewport().set_input_as_handled()
 		return
 	
 	if event.is_action_pressed("ui_accept"):
 		if current_option == Options.EXIT:
 			get_viewport().call_deferred("change_to_preloaded_scene")
+			get_viewport().set_input_as_handled()
 
 
 func _set_bgs() -> void:

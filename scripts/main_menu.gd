@@ -27,6 +27,9 @@ func _input(event):
 			get_viewport().call_deferred("change_to_preloaded_scene")
 		else:
 			get_viewport().call_deferred("change_scene", next_scenes[current_option])
+		
+		get_viewport().set_input_as_handled()
+		return
 	
 	var next : int = int(event.is_action_pressed("ui_down")) - int(event.is_action_pressed("ui_up"))
 	
@@ -35,6 +38,7 @@ func _input(event):
 	
 	current_option = posmod((current_option + next), backgrounds.size())
 	_set_bg()
+	get_viewport().set_input_as_handled()
 
 
 func _set_bg():

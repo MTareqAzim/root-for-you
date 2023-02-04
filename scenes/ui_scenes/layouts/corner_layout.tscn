@@ -6,11 +6,11 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
-shader_param/base_color = Color( 0, 1, 0.0392157, 1 )
+shader_param/base_color = Color( 0, 1, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
-shader_param/base_color = Color( 0.921569, 1, 0, 1 )
+shader_param/base_color = Color( 1, 1, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 2 )
@@ -27,7 +27,6 @@ margin_left = 0.0
 margin_top = 0.0
 margin_right = 40.0
 margin_bottom = 40.0
-color = Color( 0, 1, 0.0392157, 1 )
 action = "heal"
 
 [node name="Block" parent="." instance=ExtResource( 1 )]
@@ -38,7 +37,6 @@ margin_left = -40.0
 margin_top = 0.0
 margin_right = 0.0
 margin_bottom = 40.0
-color = Color( 0.921569, 1, 0, 1 )
 action = "block"
 
 [node name="Attack" parent="." instance=ExtResource( 1 )]
@@ -51,7 +49,6 @@ margin_left = -40.0
 margin_top = -40.0
 margin_right = 0.0
 margin_bottom = 0.0
-color = Color( 1, 0, 0, 1 )
 action = "attack"
 
 [node name="Magic" parent="." instance=ExtResource( 1 )]
@@ -61,7 +58,6 @@ margin_left = 0.0
 margin_top = -40.0
 margin_right = 40.0
 margin_bottom = 0.0
-color = Color( 0, 0.227451, 1, 1 )
 action = "magic"
 
 [connection signal="clicked" from="Heal" to="." method="_on_Heal_clicked"]

@@ -1,0 +1,52 @@
+[
+    {
+        "heal": "#00ff00",
+		"block": "#ffff00",
+		"attack": "#ff0000",
+		"magic": "#0000ff",
+		"crowd": "#ff9900",
+		"beats": "#8080ff",
+		"player": "#5cda5c",
+		"villain": "#990000"
+    },
+    {
+        "heal": "#ffffff",
+        "block": "#ffffff",
+        "attack": "#ffffff",
+        "magic": "#ffffff",
+        "crowd": "#ffffff",
+        "beats": "#ffffff",
+        "player": "#ffffff",
+        "villain": "#ffffff"
+    },
+    {
+        "heal": "#ffffff",
+        "block": "#ffffff",
+        "attack": "#ffffff",
+        "magic": "#ffffff",
+        "crowd": "#ffffff",
+        "beats": "#ffffff",
+        "player": "#ffffff",
+        "villain": "#ffffff"
+    },
+    {
+        "heal": "#ffffff",
+        "block": "#ffffff",
+        "attack": "#ffffff",
+        "magic": "#ffffff",
+        "crowd": "#ffffff",
+        "beats": "#ffffff",
+        "player": "#ffffff",
+        "villain": "#ffffff"
+    },
+    {
+        "heal": "#ffffff",
+        "block": "#ffffff",
+        "attack": "#ffffff",
+        "magic": "#ffffff",
+        "crowd": "#ffffff",
+        "beats": "#ffffff",
+        "player": "#ffffff",
+        "villain": "#ffffff"
+    }
+]

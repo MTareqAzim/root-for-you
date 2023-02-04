@@ -3,10 +3,13 @@ extends TextureRect
 
 signal clicked(input_action)
 
-export(Color) var color = Color.white setget set_color
 export(String) var action
 
 onready var animation_player : AnimationPlayer = $AnimationPlayer
+
+
+func _ready():
+	set_shader_color(Settings.get_color_from_key(action))
 
 
 func _input(event) -> void:
@@ -14,8 +17,7 @@ func _input(event) -> void:
 		_clicked()
 
 
-func set_color(new_color: Color) -> void:
-	color = new_color
+func set_shader_color(color: Color) -> void:
 	material.set_shader_param("base_color", color)
 
 

@@ -4,9 +4,10 @@ enum Options {START, SETTINGS, CREDITS}
 
 export(Array, String, FILE, "*.tscn") var next_scenes
 
-onready var backgrounds : Array = [ $CenterContainer/Start/bg,
-		$CenterContainer/Settings/bg,
-		$CenterContainer/Credits/bg
+onready var backgrounds : Array = [ 
+	$CenterContainer/Start/bg,
+	$CenterContainer/Settings/bg,
+	$CenterContainer/Credits/bg
 ]
 
 var current_option : int = Options.START

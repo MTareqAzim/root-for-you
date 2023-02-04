@@ -34,6 +34,7 @@ animations = [ {
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+beats_per_minute = 60
 pronounced_beats = true
 
 [node name="PronouncedSound" type="AudioStreamPlayer" parent="."]

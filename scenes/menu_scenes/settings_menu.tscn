@@ -1,0 +1,227 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/settings_menu.gd" type="Script" id=1]
+[ext_resource path="res://assets/art/volume_symbol.png" type="Texture" id=2]
+
+[node name="SettingsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+main_menu = "res://scenes/menu_scenes/main_menu.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.196078, 0.290196, 0.227451, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 5.0
+margin_right = -20.0
+margin_bottom = -5.0
+
+[node name="ButtonLayout" type="Label" parent="VBoxContainer"]
+margin_right = 280.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Button Layout"
+valign = 1
+
+[node name="ButtonLayoutOptions" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 280.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Corners" type="Label" parent="VBoxContainer/ButtonLayoutOptions"]
+margin_right = 90.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Corners"
+align = 1
+valign = 1
+
+[node name="BG" type="ColorRect" parent="VBoxContainer/ButtonLayoutOptions/Corners"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="Triggers" type="Label" parent="VBoxContainer/ButtonLayoutOptions"]
+margin_left = 94.0
+margin_right = 185.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Triggers"
+align = 1
+valign = 1
+
+[node name="BG" type="ColorRect" parent="VBoxContainer/ButtonLayoutOptions/Triggers"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="Face" type="Label" parent="VBoxContainer/ButtonLayoutOptions"]
+margin_left = 189.0
+margin_right = 280.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Face Buttons"
+align = 1
+valign = 1
+
+[node name="BG" type="ColorRect" parent="VBoxContainer/ButtonLayoutOptions/Face"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="Palettes" type="Label" parent="VBoxContainer"]
+margin_top = 36.0
+margin_right = 280.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Palettes"
+
+[node name="Placeholder" type="Label" parent="VBoxContainer"]
+margin_top = 54.0
+margin_right = 280.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "< Placeholder >"
+align = 1
+valign = 1
+
+[node name="BG" type="ColorRect" parent="VBoxContainer/Placeholder"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="Sounds" type="Label" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 280.0
+margin_bottom = 86.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Sounds"
+
+[node name="Master" type="Label" parent="VBoxContainer"]
+margin_top = 90.0
+margin_right = 280.0
+margin_bottom = 104.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "< Master >"
+align = 1
+valign = 1
+
+[node name="VolSymbol" type="TextureRect" parent="VBoxContainer/Master"]
+modulate = Color( 1, 1, 1, 0.705882 )
+anchor_bottom = 1.0
+margin_right = 14.0
+texture = ExtResource( 2 )
+
+[node name="Volume" type="ColorRect" parent="VBoxContainer/Master"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="Beats" type="Label" parent="VBoxContainer"]
+margin_top = 108.0
+margin_right = 280.0
+margin_bottom = 122.0
+text = "< Beats >"
+align = 1
+valign = 1
+
+[node name="VolSymbol" type="TextureRect" parent="VBoxContainer/Beats"]
+modulate = Color( 1, 1, 1, 0.705882 )
+anchor_bottom = 1.0
+margin_right = 14.0
+texture = ExtResource( 2 )
+
+[node name="Volume" type="ColorRect" parent="VBoxContainer/Beats"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="Crowd" type="Label" parent="VBoxContainer"]
+margin_top = 126.0
+margin_right = 280.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "< Crowd >"
+align = 1
+valign = 1
+
+[node name="VolSymbol" type="TextureRect" parent="VBoxContainer/Crowd"]
+modulate = Color( 1, 1, 1, 0.705882 )
+anchor_bottom = 1.0
+margin_right = 14.0
+texture = ExtResource( 2 )
+
+[node name="Volume" type="ColorRect" parent="VBoxContainer/Crowd"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="Characters" type="Label" parent="VBoxContainer"]
+margin_top = 144.0
+margin_right = 280.0
+margin_bottom = 158.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "< Characters >"
+align = 1
+valign = 1
+
+[node name="VolSymbol" type="TextureRect" parent="VBoxContainer/Characters"]
+modulate = Color( 1, 1, 1, 0.705882 )
+anchor_bottom = 1.0
+margin_right = 14.0
+texture = ExtResource( 2 )
+
+[node name="Volume" type="ColorRect" parent="VBoxContainer/Characters"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="Exit" type="Label" parent="VBoxContainer"]
+margin_top = 162.0
+margin_right = 280.0
+margin_bottom = 176.0
+text = "Save and Exit"
+align = 1
+valign = 1
+
+[node name="BG" type="ColorRect" parent="VBoxContainer/Exit"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_right = -60.0
+color = Color( 0, 0, 0, 0.392157 )

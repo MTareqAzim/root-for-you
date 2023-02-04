@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/splash_scenes/godot_splash.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/main_scenes/scene_manager.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/helper_scenes/scene_manager.tscn" type="PackedScene" id=2]
 
 [node name="MainGame" type="Control"]
 anchor_right = 1.0

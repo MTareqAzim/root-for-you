@@ -3,18 +3,36 @@ extends Control
 export(float) var fade_in_delay := 1.0
 export(float) var fade_in_time := 2.0
 export(float) var fade_out_delay := 3.0
-export(float) var fade_out_time := 1.5
+export(float) var fade_out_time := 1.0
+
+export(float) var at_least_time := 0.5
+
 export(String, FILE, "*.tscn") var scene_to_preload
 
-onready var logo = $GodotLogo
+onready var logo = $Logo
 onready var tween = $Tween
 
 
 func _ready():
 	logo.modulate = Color.transparent
+	call_deferred("_preload_scene")
 
 
-func poll_preload_scene() -> void:
+func _input(event):
+	if event.is_action_pressed("start"):
+		if not tween.is_active():
+			return
+		
+		var time_to_skip : float = fade_in_delay + fade_in_time + fade_out_delay - at_least_time
+		var total_time : float = fade_in_delay + fade_in_time + fade_out_delay + fade_out_time - 0.05
+		
+		if tween.tell() <= time_to_skip:
+			tween.seek(time_to_skip)
+		elif tween.tell() <= total_time:
+			tween.seek(total_time)
+
+
+func _preload_scene() -> void:
 	get_viewport().preload_scene(scene_to_preload)
 	_set_up_and_start_tween()
 

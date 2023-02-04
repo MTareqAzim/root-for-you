@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/art/placeholder_cheer_0.png" type="Texture" id=1]
+[ext_resource path="res://assets/art/cheer/placeholder_cheer_0.png" type="Texture" id=1]
 [ext_resource path="res://scripts/cheer_display.gd" type="Script" id=2]
-[ext_resource path="res://assets/art/placeholder_cheer_1.png" type="Texture" id=3]
-[ext_resource path="res://assets/art/placeholder_cheer_3.png" type="Texture" id=4]
-[ext_resource path="res://assets/art/placeholder_cheer_2.png" type="Texture" id=5]
+[ext_resource path="res://assets/art/cheer/placeholder_cheer_1.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/cheer/placeholder_cheer_3.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/cheer/placeholder_cheer_2.png" type="Texture" id=5]
 [ext_resource path="res://shaders/cheer_display.gdshader" type="Shader" id=6]
 
 [sub_resource type="ShaderMaterial" id=6]

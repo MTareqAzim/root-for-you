@@ -3,11 +3,6 @@ extends Viewport
 var preloaded_scene : Node
 
 
-func _ready():
-	var current_scene = get_child(0)
-	current_scene.call_deferred("poll_preload_scene")
-
-
 func change_scene(path: String) -> void:
 	var new_scene_resource = load(path)
 	var new_scene = new_scene_resource.instance()

@@ -2,7 +2,7 @@ extends Control
 
 export(String, FILE, "*.tscn") var main_menu
 
-enum Options {LAYOUT, PALETTES, MASTER, BEATS, CROWD, CHARACTER, EXIT}
+enum Options {LAYOUT, PALETTES, MASTER, BEATS, CROWD, CHARACTERS, EXIT}
 enum Layout {CORNERS, TRIGGERS, FACE}
 
 onready var current_option : int = Options.LAYOUT
@@ -21,6 +21,13 @@ onready var sounds_bg : Array = [
 	$VBoxContainer/Beats/Volume,
 	$VBoxContainer/Crowd/Volume,
 	$VBoxContainer/Characters/Volume
+]
+
+onready var sounds_demo : Array = [
+	$Master,
+	$Beats,
+	$Crowd,
+	$Characters
 ]
 
 const hover_color : Color = Color("648a8a00")
@@ -53,11 +60,17 @@ func _input(event) -> void:
 				layout_bgs[Settings.layout].color = hover_color
 			Options.PALETTES:
 				pass
-			Options.MASTER, Options.BEATS, Options.CROWD, Options.CHARACTER:
+			Options.MASTER, Options.BEATS, Options.CROWD, Options.CHARACTERS:
 				var index = current_option - 2
 				Settings.volume[index] += horizontal * 5
+				var play_test : bool = Settings.volume[index] <= 100
 				Settings.volume[index] = int(clamp(Settings.volume[index], 0, 100))
-				sounds_bg[index].anchor_right = float(Settings.volume[index]) / 100.0
+				var linear_vol = float(Settings.volume[index]) / 100.0
+				sounds_bg[index].anchor_right = linear_vol
+				
+				if play_test:
+					AudioServer.set_bus_volume_db(index, linear2db(linear_vol))
+					sounds_demo[index].play()
 		return
 	
 	if event.is_action_pressed("ui_accept"):
@@ -88,7 +101,7 @@ func _highlight() -> void:
 			layout_bgs[Settings.layout].color = hover_color
 		Options.PALETTES:
 			palette_bg.color = hover_color
-		Options.MASTER, Options.BEATS, Options.CROWD, Options.CHARACTER:
+		Options.MASTER, Options.BEATS, Options.CROWD, Options.CHARACTERS:
 			sounds_bg[current_option - 2].color = hover_color
 		Options.EXIT:
 			exit_bg.color = hover_color
@@ -100,7 +113,7 @@ func _unhighlight() -> void:
 			layout_bgs[Settings.layout].color = selected_color
 		Options.PALETTES:
 			palette_bg.color = base_color
-		Options.MASTER, Options.BEATS, Options.CROWD, Options.CHARACTER:
+		Options.MASTER, Options.BEATS, Options.CROWD, Options.CHARACTERS:
 			sounds_bg[current_option - 2].color = base_color
 		Options.EXIT:
 			exit_bg.color = base_color

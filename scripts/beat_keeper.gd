@@ -1,7 +1,7 @@
 extends Control
 
 export(bool) var enabled := true setget set_enabled
-export(int) var beats_per_minute := 90
+export(int) var beats_per_minute := 90 setget set_beats_per_minute
 export(bool) var pronounced_beats := false
 export(int, 1, 100) var time_signature := 4
 
@@ -46,3 +46,8 @@ func set_enabled(value: bool) -> void:
 		beat_delta = 0.0
 	
 	enabled = value
+
+
+func set_beats_per_minute(bpm: int) -> void:
+	beats_per_minute = bpm
+	time_between_beats = 60.0 / beats_per_minute

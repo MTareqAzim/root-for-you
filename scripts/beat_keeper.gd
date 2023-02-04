@@ -12,10 +12,15 @@ onready var time_between_beats : float = 60.0 / beats_per_minute
 
 onready var pronounced_sound : AudioStreamPlayer = $PronouncedSound
 onready var regular_sound : AudioStreamPlayer = $RegularSound
-onready var beat_display : AnimatedSprite = $Control/BeatDisplay
+onready var animation_player : AnimationPlayer = $BeatDisplay/AnimationPlayer
 
 var nth_beat : int = -1
 var beat_delta : float = 0.0
+
+
+func _ready() -> void:
+	$BeatDisplay.material.set_shader_param("base_color",
+			Settings.get_color_from_key("beats"))
 
 
 func _process(delta: float) -> void:
@@ -37,10 +42,10 @@ func _process(delta: float) -> void:
 func _beat(count: int) -> void:
 	if count == 0 and pronounced_beats:
 		pronounced_sound.play()
-		beat_display.play("pronounced")
+		animation_player.play("pronounced")
 	else:
 		regular_sound.play()
-		beat_display.play("regular")
+		animation_player.play("regular")
 	
 	emit_signal("beat")
 

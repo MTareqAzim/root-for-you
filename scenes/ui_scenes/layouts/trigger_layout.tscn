@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/ui_scenes/cheer_display.tscn" type="PackedScene" id=1]
-[ext_resource path="res://shaders/cheer_display.gdshader" type="Shader" id=2]
+[ext_resource path="res://shaders/palette_swapper.gdshader" type="Shader" id=2]
 [ext_resource path="res://scripts/cheer_manager.gd" type="Script" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]

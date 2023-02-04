@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/art/cheer/placeholder_cheer_1.png" type="Texture" id=3]
 [ext_resource path="res://assets/art/cheer/placeholder_cheer_3.png" type="Texture" id=4]
 [ext_resource path="res://assets/art/cheer/placeholder_cheer_2.png" type="Texture" id=5]
-[ext_resource path="res://shaders/cheer_display.gdshader" type="Shader" id=6]
+[ext_resource path="res://shaders/palette_swapper.gdshader" type="Shader" id=6]
 
 [sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 6 )
@@ -52,7 +52,6 @@ margin_bottom = 20.0
 texture = ExtResource( 1 )
 stretch_mode = 3
 script = ExtResource( 2 )
-color = Color( 0.847059, 0.0588235, 0.0588235, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 3 )

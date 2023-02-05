@@ -18,7 +18,8 @@ const base_color : Color = Color("64000000")
 
 func _ready():
 	_set_bg()
-	get_viewport().call_deferred("preload_scene", next_scenes[Options.START])
+	if get_viewport().has_method("preload_scene"):
+		get_viewport().call_deferred("preload_scene", next_scenes[Options.START])
 
 
 func _input(event):

@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/settings_menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/volume_symbol.png" type="Texture" id=2]
 [ext_resource path="res://assets/sounds/regular_wah.wav" type="AudioStream" id=3]
+[ext_resource path="res://scenes/helper_scenes/palette_preview.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/art/left_arrow.png" type="Texture" id=5]
+[ext_resource path="res://assets/art/right_arrow.png" type="Texture" id=6]
 
 [node name="SettingsMenu" type="Control"]
 anchor_right = 1.0
@@ -19,24 +22,28 @@ color = Color( 0.196078, 0.290196, 0.227451, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
-margin_top = 5.0
+margin_top = 6.0
 margin_right = -20.0
-margin_bottom = -5.0
+margin_bottom = -6.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
 
 [node name="ButtonLayout" type="Label" parent="VBoxContainer"]
+margin_top = 1.0
 margin_right = 280.0
-margin_bottom = 14.0
+margin_bottom = 15.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "Button Layout"
 valign = 1
 
 [node name="ButtonLayoutOptions" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 18.0
+margin_top = 17.0
 margin_right = 280.0
-margin_bottom = 32.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 6
 
 [node name="Corners" type="Label" parent="VBoxContainer/ButtonLayoutOptions"]
 margin_right = 90.0
@@ -86,50 +93,81 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.392157 )
 
 [node name="Palettes" type="Label" parent="VBoxContainer"]
-margin_top = 36.0
+margin_top = 34.0
 margin_right = 280.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "Palettes"
 
-[node name="Placeholder" type="Label" parent="VBoxContainer"]
-margin_top = 54.0
+[node name="PalettePreview" parent="VBoxContainer" instance=ExtResource( 4 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 49.0
 margin_right = 280.0
 margin_bottom = 68.0
-size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "< Placeholder >"
-align = 1
-valign = 1
 
-[node name="BG" type="ColorRect" parent="VBoxContainer/Placeholder"]
+[node name="BG" type="ColorRect" parent="VBoxContainer/PalettePreview"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.392157 )
 
+[node name="LeftArrow" type="TextureRect" parent="VBoxContainer/PalettePreview"]
+modulate = Color( 1, 1, 1, 0.705882 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 5.0
+margin_top = -7.0
+margin_right = 14.0
+margin_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 5 )
+
+[node name="RightArrow" type="TextureRect" parent="VBoxContainer/PalettePreview"]
+modulate = Color( 1, 1, 1, 0.705882 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -14.0
+margin_top = -7.0
+margin_right = -5.0
+margin_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+
 [node name="Sounds" type="Label" parent="VBoxContainer"]
-margin_top = 72.0
+margin_top = 69.0
 margin_right = 280.0
-margin_bottom = 86.0
+margin_bottom = 83.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "Sounds"
 
 [node name="Master" type="Label" parent="VBoxContainer"]
-margin_top = 90.0
+margin_top = 86.0
 margin_right = 280.0
-margin_bottom = 104.0
+margin_bottom = 100.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "< Master >"
+text = "Master"
 align = 1
 valign = 1
 
 [node name="VolSymbol" type="TextureRect" parent="VBoxContainer/Master"]
 modulate = Color( 1, 1, 1, 0.705882 )
 anchor_bottom = 1.0
+margin_left = 3.0
 margin_right = 14.0
 texture = ExtResource( 2 )
 
@@ -142,16 +180,19 @@ size_flags_vertical = 3
 color = Color( 0, 0, 0, 0.392157 )
 
 [node name="Beats" type="Label" parent="VBoxContainer"]
-margin_top = 108.0
+margin_top = 102.0
 margin_right = 280.0
-margin_bottom = 122.0
-text = "< Beats >"
+margin_bottom = 116.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Beats"
 align = 1
 valign = 1
 
 [node name="VolSymbol" type="TextureRect" parent="VBoxContainer/Beats"]
 modulate = Color( 1, 1, 1, 0.705882 )
 anchor_bottom = 1.0
+margin_left = 3.0
 margin_right = 14.0
 texture = ExtResource( 2 )
 
@@ -164,18 +205,19 @@ size_flags_vertical = 3
 color = Color( 0, 0, 0, 0.392157 )
 
 [node name="Crowd" type="Label" parent="VBoxContainer"]
-margin_top = 126.0
+margin_top = 119.0
 margin_right = 280.0
-margin_bottom = 140.0
+margin_bottom = 133.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "< Crowd >"
+text = "Crowd"
 align = 1
 valign = 1
 
 [node name="VolSymbol" type="TextureRect" parent="VBoxContainer/Crowd"]
 modulate = Color( 1, 1, 1, 0.705882 )
 anchor_bottom = 1.0
+margin_left = 3.0
 margin_right = 14.0
 texture = ExtResource( 2 )
 
@@ -188,18 +230,19 @@ size_flags_vertical = 3
 color = Color( 0, 0, 0, 0.392157 )
 
 [node name="Characters" type="Label" parent="VBoxContainer"]
-margin_top = 144.0
+margin_top = 135.0
 margin_right = 280.0
-margin_bottom = 158.0
+margin_bottom = 149.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-text = "< Characters >"
+text = "Characters"
 align = 1
 valign = 1
 
 [node name="VolSymbol" type="TextureRect" parent="VBoxContainer/Characters"]
 modulate = Color( 1, 1, 1, 0.705882 )
 anchor_bottom = 1.0
+margin_left = 3.0
 margin_right = 14.0
 texture = ExtResource( 2 )
 
@@ -212,9 +255,11 @@ size_flags_vertical = 3
 color = Color( 0, 0, 0, 0.392157 )
 
 [node name="Exit" type="Label" parent="VBoxContainer"]
-margin_top = 162.0
+margin_top = 152.0
 margin_right = 280.0
-margin_bottom = 176.0
+margin_bottom = 166.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
 text = "Save and Exit"
 align = 1
 valign = 1

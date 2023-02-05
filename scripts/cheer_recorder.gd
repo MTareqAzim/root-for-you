@@ -73,6 +73,7 @@ func _on_beat() -> void:
 	if total_beats > max_beats:
 		emit_signal("end_recording")
 		stop_recording()
+		return
 	
 	if not _skip_next_beat:
 		var beat_record = CheerRecord.new()

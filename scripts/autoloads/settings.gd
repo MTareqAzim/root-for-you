@@ -7,18 +7,18 @@ var layout : int = Layout.TRIGGER
 var palette : int = 0
 var volume : Array = [100, 100, 100, 100]
 
-const default_color : Color = Color("#303030")
+const default_color : Color = Color("#ffffff")
 
 var palettes : Array = [
 	{
+		"beat": "#303030",
 		"heal": "#00ff00",
 		"block": "#ffff00",
 		"attack": "#ff0000",
 		"magic": "#0000ff",
 		"crowd": "#ff9900",
-		"beats": "#8080ff",
 		"player": "#5cda5c",
-		"villain": "#990000",
+		"villain": "#990000"
 	}
 ]
 

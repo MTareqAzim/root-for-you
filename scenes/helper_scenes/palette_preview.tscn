@@ -1,0 +1,191 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scenes/ui_scenes/palette_icon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://shaders/palette_swapper.gdshader" type="Shader" id=2]
+[ext_resource path="res://assets/art/icons/beat-small.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/icons/placeholder-small.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/icons/character-small.png" type="Texture" id=5]
+[ext_resource path="res://scripts/palette_preview.gd" type="Script" id=6]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/base_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/base_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/base_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/base_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/base_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/base_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/base_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/base_color = Color( 1, 1, 1, 1 )
+
+[node name="PalettePreview" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -140.0
+margin_top = -9.5
+margin_right = 140.0
+margin_bottom = 9.5
+rect_min_size = Vector2( 280, 19 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+script = ExtResource( 6 )
+
+[node name="HBC" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+alignment = 1
+
+[node name="Beats" parent="HBC" instance=ExtResource( 1 )]
+material = SubResource( 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 56.0
+margin_top = 2.0
+margin_right = 70.0
+margin_bottom = 16.0
+texture = ExtResource( 3 )
+key = "beats"
+
+[node name="VS1" type="VSeparator" parent="HBC"]
+margin_left = 74.0
+margin_right = 84.0
+margin_bottom = 19.0
+custom_constants/separation = 10
+custom_styles/separator = SubResource( 9 )
+
+[node name="Magic" parent="HBC" instance=ExtResource( 1 )]
+material = SubResource( 2 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 88.0
+margin_top = 2.0
+margin_right = 102.0
+margin_bottom = 16.0
+texture = ExtResource( 4 )
+key = "magic"
+
+[node name="Heal" parent="HBC" instance=ExtResource( 1 )]
+material = SubResource( 3 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 106.0
+margin_top = 2.0
+margin_right = 120.0
+margin_bottom = 16.0
+texture = ExtResource( 4 )
+key = "heal"
+
+[node name="Block" parent="HBC" instance=ExtResource( 1 )]
+material = SubResource( 4 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 124.0
+margin_top = 2.0
+margin_right = 138.0
+margin_bottom = 16.0
+texture = ExtResource( 4 )
+key = "block"
+
+[node name="Attack" parent="HBC" instance=ExtResource( 1 )]
+material = SubResource( 5 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 142.0
+margin_top = 2.0
+margin_right = 156.0
+margin_bottom = 16.0
+texture = ExtResource( 4 )
+key = "attack"
+
+[node name="VS2" type="VSeparator" parent="HBC"]
+margin_left = 160.0
+margin_right = 170.0
+margin_bottom = 19.0
+custom_constants/separation = 10
+custom_styles/separator = SubResource( 10 )
+
+[node name="Crowd" parent="HBC" instance=ExtResource( 1 )]
+material = SubResource( 6 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 174.0
+margin_top = 2.0
+margin_right = 188.0
+margin_bottom = 16.0
+texture = ExtResource( 5 )
+key = "crowd"
+
+[node name="Player" parent="HBC" instance=ExtResource( 1 )]
+material = SubResource( 7 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 192.0
+margin_top = 2.0
+margin_right = 206.0
+margin_bottom = 16.0
+texture = ExtResource( 5 )
+key = "player"
+
+[node name="Villain" parent="HBC" instance=ExtResource( 1 )]
+material = SubResource( 8 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 210.0
+margin_top = 2.0
+margin_right = 224.0
+margin_bottom = 16.0
+texture = ExtResource( 5 )
+key = "villain"

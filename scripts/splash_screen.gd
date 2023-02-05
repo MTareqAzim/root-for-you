@@ -33,7 +33,8 @@ func _input(event):
 
 
 func _preload_scene() -> void:
-	get_viewport().preload_scene(scene_to_preload)
+	if get_viewport().has_method("preload_scene"):
+		get_viewport().preload_scene(scene_to_preload)
 	_set_up_and_start_tween()
 
 

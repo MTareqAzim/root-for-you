@@ -5,7 +5,9 @@ export(String, FILE, "*.tscn") var main_menu
 enum Options {LAYOUT, PALETTES, MASTER, BEATS, CROWD, CHARACTERS, EXIT}
 enum Layout {CORNERS, TRIGGERS, FACE}
 
-onready var current_option : int = Options.LAYOUT
+var current_option : int = Options.LAYOUT
+
+onready var palette_preview = $VBoxContainer/PalettePreview
 
 onready var layout_bgs : Array = [
 	$VBoxContainer/ButtonLayoutOptions/Corners/BG,
@@ -13,7 +15,7 @@ onready var layout_bgs : Array = [
 	$VBoxContainer/ButtonLayoutOptions/Face/BG
 ]
 
-onready var palette_bg : ColorRect = $VBoxContainer/Placeholder/BG
+onready var palette_bg : ColorRect = $VBoxContainer/PalettePreview/BG
 onready var exit_bg : ColorRect = $VBoxContainer/Exit/BG
 
 onready var sounds_bg : Array = [
@@ -31,13 +33,14 @@ onready var sounds_demo : Array = [
 ]
 
 const hover_color : Color = Color("648a8a00")
-const selected_color : Color = Color("648a0000")
+const selected_color : Color = Color("f08f0000")
 const base_color : Color = Color("64000000")
 
 
 func _ready() -> void:
 	_set_bgs()
-	get_viewport().call_deferred("preload_scene", main_menu)
+	if get_viewport().has_method("preload_scene"):
+		get_viewport().call_deferred("preload_scene", main_menu)
 
 
 func _input(event) -> void:
@@ -60,7 +63,8 @@ func _input(event) -> void:
 				Settings.layout = posmod((Settings.layout + horizontal), Settings.Layout.size())
 				layout_bgs[Settings.layout].color = hover_color
 			Options.PALETTES:
-				pass
+				Settings.palette = posmod(Settings.palette + horizontal, Settings.palettes.size())
+				palette_preview.refresh_preview()
 			Options.MASTER, Options.BEATS, Options.CROWD, Options.CHARACTERS:
 				var index = current_option - 2
 				Settings.volume[index] += horizontal * 5

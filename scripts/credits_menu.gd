@@ -4,7 +4,8 @@ export(String, FILE, "*.tscn") var main_menu
 
 
 func _ready():
-	get_viewport().call_deferred("preload_scene", main_menu)
+	if get_viewport().has_method("preload_scene"):
+		get_viewport().call_deferred("preload_scene", main_menu)
 
 
 func _input(event):

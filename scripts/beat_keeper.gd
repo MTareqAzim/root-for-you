@@ -21,7 +21,7 @@ var beat_delta : float = 0.0
 
 func _ready() -> void:
 	$BeatDisplay.material.set_shader_param("base_color",
-			Settings.get_color_from_key("beats"))
+			Settings.get_color_from_key("beat"))
 
 
 func _process(delta: float) -> void:

@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Resource",
+"class": "CheerRecord",
+"language": "GDScript",
+"path": "res://scripts/cheer_record.gd"
+} ]
+_global_script_class_icons={
+"CheerRecord": ""
+}
+
 [application]
 
 config/name="RootForYou"

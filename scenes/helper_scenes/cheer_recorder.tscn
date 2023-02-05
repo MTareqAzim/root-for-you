@@ -2,5 +2,5 @@
 
 [ext_resource path="res://scripts/cheer_recorder.gd" type="Script" id=1]
 
-[node name="CheerRecorder" type="Node"]
+[node name="CheerRecorder" type="Control"]
 script = ExtResource( 1 )

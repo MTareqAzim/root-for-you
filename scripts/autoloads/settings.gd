@@ -7,6 +7,8 @@ var layout : int = Layout.TRIGGER
 var palette : int = 0
 var volume : Array = [100, 100, 100, 100]
 
+const default_color : Color = Color("#303030")
+
 var palettes : Array = [
 	{
 		"heal": "#00ff00",
@@ -16,7 +18,7 @@ var palettes : Array = [
 		"crowd": "#ff9900",
 		"beats": "#8080ff",
 		"player": "#5cda5c",
-		"villain": "#990000"
+		"villain": "#990000",
 	}
 ]
 
@@ -38,4 +40,7 @@ func _load_palettes() -> void:
 
 func get_color_from_key(key: String) -> Color:
 	var current_palette : Dictionary = palettes[palette]
-	return Color(current_palette[key])
+	if current_palette.has(key):
+		return Color(current_palette[key])
+	
+	return default_color

@@ -7,6 +7,7 @@ export(int) var beats_per_minute := 90 setget set_beats_per_minute
 export(bool) var pronounced_beats := false
 export(int, 1, 100) var time_signature := 4
 export(float, 0.0, 0.5) var leeway_ratio := 0.25
+export(float) var max_leeway := 0.2
 
 onready var time_between_beats : float = 60.0 / beats_per_minute
 
@@ -75,9 +76,11 @@ func is_on_beat() -> bool:
 
 func is_within_next_beat() -> bool:
 	var leeway : float = time_between_beats * leeway_ratio
+	leeway = min(leeway, max_leeway)
 	return (time_between_beats - beat_delta) <= leeway
 
 
 func is_within_previous_beat() -> bool:
 	var leeway : float = time_between_beats * leeway_ratio
+	leeway = min(leeway, max_leeway)
 	return beat_delta <= leeway

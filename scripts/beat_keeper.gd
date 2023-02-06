@@ -65,6 +65,9 @@ func set_beats_per_minute(bpm: int) -> void:
 
 
 func is_closest_beat_pronounced() -> bool:
+	if not pronounced_beats:
+		return false
+	
 	var offset : int = 1 if beat_delta > (time_between_beats*0.5) else 0
 	var closest_beat : int = (nth_beat + offset) % time_signature
 	return closest_beat == 0

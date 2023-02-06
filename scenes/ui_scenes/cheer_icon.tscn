@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/cheer_icon.gd" type="Script" id=1]
 [ext_resource path="res://shaders/palette_swapper.gdshader" type="Shader" id=2]
 [ext_resource path="res://assets/art/icons/pronounced.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/icons/beat.png" type="Texture" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -14,15 +15,40 @@ resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/base_color = Color( 1, 1, 1, 1 )
 
-[node name="CheerIcon" type="TextureRect"]
-material = SubResource( 1 )
-margin_right = 24.0
-margin_bottom = 24.0
+[node name="CheerIcon" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 script = ExtResource( 1 )
+
+[node name="Icon" type="TextureRect" parent="."]
+material = SubResource( 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 12
+size_flags_vertical = 12
+texture = ExtResource( 4 )
 
 [node name="Pronounced" type="TextureRect" parent="."]
 show_behind_parent = true
 material = SubResource( 2 )
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 12
+size_flags_vertical = 12
 texture = ExtResource( 3 )

@@ -1,9 +1,151 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/game_scene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui_scenes/beat_keeper.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/helper_scenes/layout_manager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/helper_scenes/cheer_recorder.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/ui_scenes/pattern_displayer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/character_scenes/enemy_scene.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/art/icons/character.png" type="Texture" id=7]
+[ext_resource path="res://shaders/palette_swapper.gdshader" type="Shader" id=8]
+[ext_resource path="res://scripts/player.gd" type="Script" id=9]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 8 )
+shader_param/base_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -68, -16 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "jump"
+length = 0.15
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.075, 0.125, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -68, -16 ), Vector2( -68, -25 ), Vector2( -68, -13 ), Vector2( -68, -16 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BeatKeeper:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LayoutManager:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "beat_fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("BeatKeeper:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1.86607, 0.707107 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "layout_fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("LayoutManager:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "player_fade_in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Player")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "enabled", true ],
+"method": "set"
+} ]
+}
 
 [node name="GameScene" type="Control"]
 anchor_right = 1.0
@@ -17,14 +159,64 @@ color = Color( 0.45098, 0.45098, 0.45098, 1 )
 
 [node name="BeatKeeper" parent="." instance=ExtResource( 2 )]
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
 [node name="LayoutManager" parent="." instance=ExtResource( 3 )]
 
 [node name="CheerRecorder" parent="." instance=ExtResource( 4 )]
 beat_keeper_path = NodePath("../BeatKeeper")
 
+[node name="Enemy" parent="." instance=ExtResource( 6 )]
+
+[node name="Player" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_top = -20.0
+margin_bottom = -20.0
+script = ExtResource( 9 )
+
+[node name="Sprite" type="TextureRect" parent="Player"]
+material = SubResource( 1 )
+margin_left = -68.0
+margin_top = -16.0
+margin_right = -48.0
+margin_bottom = 24.0
+texture = ExtResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+anims/RESET = SubResource( 3 )
+anims/jump = SubResource( 2 )
+
+[node name="EnemyPattern" parent="." instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+margin_left = -8.0
+margin_right = 8.0
+character = "villain"
+
+[node name="CrowdPattern" parent="." instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 0.55
+anchor_right = 0.5
+anchor_bottom = 0.55
+margin_left = -8.0
+margin_top = -8.0
+margin_right = 8.0
+margin_bottom = 8.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/beat_fade_in = SubResource( 6 )
+anims/layout_fade_in = SubResource( 7 )
+anims/player_fade_in = SubResource( 5 )
+
 [connection signal="beat" from="BeatKeeper" to="CheerRecorder" method="_on_beat"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="beat" from="BeatKeeper" to="Enemy" method="_on_beat"]
+[connection signal="beat" from="BeatKeeper" to="Player" method="_on_beat"]
 [connection signal="cheer" from="LayoutManager" to="CheerRecorder" method="_on_cheer"]
+[connection signal="cheer_recorded" from="CheerRecorder" to="CrowdPattern" method="display_cheer"]
+[connection signal="end_recording" from="CheerRecorder" to="." method="_on_end_recording"]
+[connection signal="prev_beat_overwritten" from="CheerRecorder" to="CrowdPattern" method="overwrite_prev_beat"]
+[connection signal="cheer" from="Enemy" to="EnemyPattern" method="display_cheer"]

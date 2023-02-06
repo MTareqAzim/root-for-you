@@ -17,6 +17,11 @@ var _is_recording_cheers : bool = false
 var _skip_next_beat :bool = false
 
 
+func _ready():
+	stop_recording()
+	reset_recording()
+
+
 func start_recording() -> void:
 	reset_recording()
 	_is_recording = true
@@ -70,7 +75,7 @@ func _on_beat() -> void:
 	
 	total_beats += 1
 	
-	if total_beats > max_beats:
+	if total_beats >= max_beats:
 		emit_signal("end_recording")
 		stop_recording()
 		return

@@ -14,7 +14,8 @@ onready var cheers : Array = []
 
 var _is_recording : bool = false
 var _is_recording_cheers : bool = false
-var _skip_next_beat :bool = false
+var _skip_next_beat : bool = false
+var _cheered : bool = false
 
 
 func _ready():
@@ -30,6 +31,7 @@ func start_recording() -> void:
 func stop_recording() -> void:
 	_is_recording = false
 	_is_recording_cheers = false
+	_skip_next_beat = false
 
 
 func reset_recording() -> void:
@@ -49,6 +51,9 @@ func _on_cheer(cheer: String) -> void:
 		emit_signal("off_beat")
 		return
 	
+	if _cheered:
+		return
+	
 	var cheer_record = CheerRecord.new()
 	cheer_record.cheer = cheer
 	cheer_record.is_pronounced = beat_keeper.is_closest_beat_pronounced()
@@ -57,6 +62,8 @@ func _on_cheer(cheer: String) -> void:
 		_is_recording_cheers = true
 	
 	if beat_keeper.is_within_next_beat():
+		if cheers.size() == 0:
+			total_beats = -1
 		_skip_next_beat = true
 	
 	if beat_keeper.is_within_previous_beat():
@@ -67,6 +74,7 @@ func _on_cheer(cheer: String) -> void:
 	
 	emit_signal("cheer_recorded", cheer_record)
 	cheers.append(cheer_record)
+	_cheered = true
 
 
 func _on_beat() -> void:
@@ -74,6 +82,7 @@ func _on_beat() -> void:
 		return
 	
 	total_beats += 1
+	_cheered = false
 	
 	if total_beats >= max_beats:
 		emit_signal("end_recording")

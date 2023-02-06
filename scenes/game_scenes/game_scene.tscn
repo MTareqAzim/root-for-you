@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/game_scene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui_scenes/beat_keeper.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://assets/art/icons/character.png" type="Texture" id=7]
 [ext_resource path="res://shaders/palette_swapper.gdshader" type="Shader" id=8]
 [ext_resource path="res://scripts/player.gd" type="Script" id=9]
+[ext_resource path="res://scripts/fight_manager.gd" type="Script" id=10]
+[ext_resource path="res://scripts/bpm_label.gd" type="Script" id=11]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -45,6 +47,89 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -68, -16 ), Vector2( -68, -25 ), Vector2( -68, -13 ), Vector2( -68, -16 ) ]
+}
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = ExtResource( 8 )
+shader_param/base_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 110, 65 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "jump_in"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.1, 0.1 ), Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 0.450625 ),
+"update": 0,
+"values": [ Vector2( 110, 65 ), Vector2( 110, 35 ), Vector2( 110, 116 ), Vector2( 110, 250 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -85,9 +170,46 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("CrowdPattern:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("EnemyPattern:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("EnemyPattern:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "beat_fade_in"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("BeatKeeper:modulate")
 tracks/0/interp = 1
@@ -99,6 +221,106 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1.86607, 0.707107 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BeatKeeper:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "crowd_pattern_displayer_fade_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("CrowdPattern:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("CheerRecorder")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "start_recording"
+} ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "crowd_pattern_displayer_fade_out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("CrowdPattern:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("CrowdPattern")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reset_pattern"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "enemy_pattern_displayer_fade_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemyPattern:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnemyPattern:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -157,11 +379,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.45098, 0.45098, 0.45098, 1 )
 
+[node name="FightManager" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+script = ExtResource( 10 )
+
 [node name="BeatKeeper" parent="." instance=ExtResource( 2 )]
 
 [node name="LayoutManager" parent="." instance=ExtResource( 3 )]
 
 [node name="CheerRecorder" parent="." instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 beat_keeper_path = NodePath("../BeatKeeper")
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
@@ -189,34 +422,70 @@ anims/jump = SubResource( 2 )
 
 [node name="EnemyPattern" parent="." instance=ExtResource( 5 )]
 anchor_left = 0.5
-anchor_top = 0.1
+anchor_top = 0.2
 anchor_right = 0.5
-anchor_bottom = 0.1
-margin_left = -8.0
-margin_right = 8.0
+anchor_bottom = 0.2
+margin_left = -12.0
+margin_top = -12.0
+margin_right = 12.0
+margin_bottom = 12.0
 character = "villain"
 
 [node name="CrowdPattern" parent="." instance=ExtResource( 5 )]
 anchor_left = 0.5
-anchor_top = 0.55
+anchor_top = 0.62
 anchor_right = 0.5
-anchor_bottom = 0.55
-margin_left = -8.0
-margin_top = -8.0
-margin_right = 8.0
-margin_bottom = 8.0
+anchor_bottom = 0.62
+margin_left = -12.0
+margin_top = -12.101
+margin_right = 12.0
+margin_bottom = 11.899
+
+[node name="BPMLabel" type="Label" parent="."]
+material = SubResource( 11 )
+anchor_left = 0.5
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.4
+margin_left = -50.0
+margin_top = -7.0
+margin_right = 50.0
+margin_bottom = 7.0
+rect_pivot_offset = Vector2( 50, 7 )
+text = "BPM: 60"
+align = 1
+valign = 1
+script = ExtResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BPMLabel"]
+anims/RESET = SubResource( 12 )
+anims/jump_in = SubResource( 13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 4 )
 anims/beat_fade_in = SubResource( 6 )
+anims/crowd_pattern_displayer_fade_in = SubResource( 8 )
+anims/crowd_pattern_displayer_fade_out = SubResource( 10 )
+anims/enemy_pattern_displayer_fade_in = SubResource( 9 )
 anims/layout_fade_in = SubResource( 7 )
 anims/player_fade_in = SubResource( 5 )
 
+[connection signal="fight_over" from="FightManager" to="." method="fighting_done"]
+[connection signal="outcome" from="FightManager" to="." method="play_outcome"]
+[connection signal="beat" from="BeatKeeper" to="FightManager" method="_on_beat"]
 [connection signal="beat" from="BeatKeeper" to="CheerRecorder" method="_on_beat"]
 [connection signal="beat" from="BeatKeeper" to="Enemy" method="_on_beat"]
 [connection signal="beat" from="BeatKeeper" to="Player" method="_on_beat"]
 [connection signal="cheer" from="LayoutManager" to="CheerRecorder" method="_on_cheer"]
 [connection signal="cheer_recorded" from="CheerRecorder" to="CrowdPattern" method="display_cheer"]
-[connection signal="end_recording" from="CheerRecorder" to="." method="_on_end_recording"]
+[connection signal="end_recording" from="CheerRecorder" to="." method="recording_done"]
 [connection signal="prev_beat_overwritten" from="CheerRecorder" to="CrowdPattern" method="overwrite_prev_beat"]
 [connection signal="cheer" from="Enemy" to="EnemyPattern" method="display_cheer"]
+[connection signal="done" from="Enemy" to="." method="enemy_done"]
+[connection signal="enemy_cheers" from="Enemy" to="." method="set_enemy_cheers"]
+[connection signal="enemy_ready" from="Enemy" to="." method="enemy_ready"]
+[connection signal="fight_animation_ended" from="Enemy" to="." method="fight_animation_ended"]
+[connection signal="max_beats" from="Enemy" to="." method="set_max_beats"]
+[connection signal="new_beat" from="Enemy" to="." method="set_beat"]
+[connection signal="fight_animation_ended" from="Player" to="." method="fight_animation_ended"]
+[connection signal="animation_finished" from="Player/AnimationPlayer" to="Player" method="_on_animation_finished"]
